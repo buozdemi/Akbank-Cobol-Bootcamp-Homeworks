@@ -1,0 +1,60 @@
+//PBEG005J JOB 1,NOTIFY=&SYSUID
+//***************************************************/
+//* Copyright Contributors to the COBOL Programming Course
+//* SPDX-License-Identifier: CC-BY-4.0
+//***************************************************/
+//COBRUN    EXEC IGYWCL
+//COBOL.SYSIN  DD DSN=Z95609.CBL(PBEG0005),DISP=SHR
+//LKED.SYSLMOD DD DSN=Z95609.LOAD(PBEG0005),DISP=SHR
+//***************************************************/
+// IF RC < 5 THEN
+//***************************************************/
+//DELET100 EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSIN    DD *
+  DELETE Z95609.QSAM.GG NONVSAM
+  IF LASTCC LE 08 THEN SET MAXCC = 00
+//SORT0200 EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=*
+//SORTIN   DD *
+0001MEHMET         AYDIN          19671029
+0003MEHMET         AYDIN          19231021
+0008MUSTAFA        YILMAZ         19950221
+0007BURAK          OZDEMIR        19970510
+//SORTOUT  DD DSN=Z95609.QSAM.GG,
+//            DISP=(NEW,CATLG,DELETE),
+//            SPACE=(TRK,(5,5),RLSE),
+//            DCB=(RECFM=FB,LRECL=42)
+//SYSIN    DD *
+  SORT FIELDS=COPY
+//DELET300 EXEC PGM=IEFBR14
+//FILE01   DD DSN=Z95609.QSAM.HH,
+//            DISP=(MOD,DELETE,DELETE),
+//            SPACE=(TRK,0)
+//SORT0400 EXEC PGM=SORT
+//SYSOUT   DD SYSOUT=*
+//SORTIN   DD DSN=Z95609.QSAM.GG,DISP=SHR
+//SORTOUT  DD DSN=Z95609.QSAM.HH,
+//            DISP=(NEW,CATLG,DELETE),
+//            SPACE=(TRK,(5,5),RLSE),
+//            DCB=(RECFM=FB,LRECL=50)
+//SYSIN    DD *
+  SORT FIELDS=(1,4,CH,A)
+  INCLUDE COND=(1,1,CH,EQ,C'0')
+  OUTREC FIELDS=(1,42,DATE1)
+//DELET350  EXEC PGM=IEFBR14
+//FILE01    DD DSN=Z95609.QSAM.JJ,
+//             DISP=(MOD,DELETE,DELETE),SPACE=(TRK,0)
+//RUN       EXEC PGM=PBEG0005
+//STEPLIB   DD DSN=&SYSUID..LOAD,DISP=SHR
+//ACCTREC   DD DSN=&SYSUID..QSAM.HH,DISP=SHR
+//PRTLINE   DD DSN=&SYSUID..QSAM.JJ,
+//             DISP=(NEW,CATLG,DELETE),
+//             SPACE=(TRK,(5,5),RLSE),
+//             DCB=(RECFM=FB,LRECL=63,BLKSIZE=0),UNIT=3390
+//SYSOUT    DD SYSOUT=*,OUTLIM=15000
+//CEEDUMP   DD DUMMY
+//SYSUDUMP  DD DUMMY
+//***************************************************/
+// ELSE
+// ENDIF
