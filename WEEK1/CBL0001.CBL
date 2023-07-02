@@ -15,7 +15,7 @@
            SELECT ACCT-REC   ASSIGN TO ACCTREC.
       * Daha iyi anlasilmasi adina once 12. satiri anlatacagim.
       * SELECT ile dahili, yani bizim olan bir dosya olustur dedik. 
-      * Ve bu dosyamızın icerigini ASSIGN TO kullanarak 
+      * Ve bu dosyamizin icerigini ASSIGN TO kullanarak 
       * ACCTREC isimli bir harici dosya olusturup ona bagladik.
       * Peki neden bunu yaptik? Çünkü DATASET bolumundeki dosyalarimizda 
       * kullanici adimizla baslayan 'Z00000.DATA' isimli bir data 
@@ -26,13 +26,13 @@
       * sey JCL dosyamizda belirttigimiz koddur. JCL dosyamiza girersek 
       * ACCTREC ile baslayan kodu gorecegiz. Hemen yukarida ASSIGN TO 
       * kullanarak olusturdugumuz bu ACCTREC isimli dosyamizi JCL 
-      * dosyamizdaki ifade ettigimiz ACCTREC satırı ile data dosyamiza 
+      * dosyamizdaki ifade ettigimiz ACCTREC satiri ile data dosyamiza 
       * baglamis oluyoruz.
 
-      * Bu JCL'in icindeki ACCTREC komutunun devamında yazan "SYSUID" bir 
-      * environment variable'dır. Yani bizim kullanıcı adımızı tutan bir 
+      * Bu JCL'in icindeki ACCTREC komutunun devaminda yazan "SYSUID" bir 
+      * environment variable'dir. Yani bizim kullanici adimizi tutan bir 
       * degiskendir. (Yani SYSUID = Z99999.) Dikkat ederseniz komutun 
-      * devaminda ise ".DATA" yazıyor. DATA dosyamizi derleyicimize 
+      * devaminda ise ".DATA" yaziyor. DATA dosyamizi derleyicimize 
       * bu komutla vermis olduk. Diger bir deyisle yukarida 
       * olusturdugumuz ACCTREC isimli dosya icin kullanilacak veri 
       * setini "Z99999.DATA" olarak tanimlamis olduk. ACCTREC komutunun 
@@ -41,15 +41,15 @@
       * belirtmis oluyoruz. 
 
       * Yani artik ACCTREC isimli dosyanin icindeki veriler bizim icin 
-      * kodumuzda ACCT-REC isimli değiskende bulunuyor.
+      * kodumuzda ACCT-REC isimli degiskende bulunuyor.
 
       * O zaman simdi yukaridaki 14. satira donelim. Bu satirda ise yine 
       * ayni seyi yaptik fakat tek fark PRTLINE isimli dosyayi bir 
-      * DATA'ya baglamadik. Cunku bu dosyanin boş olmasini istiyoruz. 
+      * DATA'ya baglamadik. Cunku bu dosyanin bos olmasini istiyoruz. 
       * Bu bos dosyayi kodumuzda diger dosyadan okudugumuz degerlerle 
-      * dolduracagiz. JCL dosyamiza gidersek PRTLINE ile başlayan koda 
+      * dolduracagiz. JCL dosyamiza gidersek PRTLINE ile baslayan koda 
       * geldigimizde "PRTLINE DD SYSOUT=*,OUTLIM=15000" boyle bir ifade 
-      * goruyoruz. Bu kod ile şunu yapmis olduk : Birazdan asagida 
+      * goruyoruz. Bu kod ile sunu yapmis olduk : Birazdan asagida 
       * yazacagimiz WRITE komutu ile yazdirma islemini hangi dosyaya 
       * yapacagimizi secmis olduk. Yani programin ciktisini belirli bir 
       * dosyaya yonlendirdik. (DD:Data Definition) "DD SYSOUT=*" ifadesi 
@@ -62,13 +62,13 @@
       *-------------
        FILE SECTION.
        FD  PRINT-LINE RECORDING MODE F.
-      * Burada 64. satirdaki ifademizde sunu saglamış oluyoruz :
+      * Burada 64. satirdaki ifademizde sunu saglamis oluyoruz :
       * PRINT-LINE isimli degiskenimiz dosyamizi temsil ediyor. Cunku 
       * yukarida FILE-CONTROL bolumunde bu degiskeni dosyamizla 
       * iliskilendirdik. "FD" anahtar kelimesi ile bu dosyamizin 
       * aciklamasini baslatiyoruz. "RECORDING MODE F" ifadesi ile 
       * dosyanin kayit yapisinin "Fixed(F)" sabit modda oldugunu 
-      * belirtiyoruz. Yani dosyamizdaki her kaydin(satirin) aynı 
+      * belirtiyoruz. Yani dosyamizdaki her kaydin(satirin) ayni 
       * uzunlukta oldugunu ve belirli sabit uzunlukta alanlardan 
       * olustugunu belirttik.
        01  PRINT-REC.
@@ -145,7 +145,7 @@
            CLOSE PRINT-LINE.
            GOBACK.
       * READ-RECORD isimli fonksiyonumuz calisinca goruyoruz ki 
-      * "READ ACCT-REC" sayesinde ACCT-REC isimli dosyamizın ilk satiri
+      * "READ ACCT-REC" sayesinde ACCT-REC isimli dosyamizin ilk satiri
       * READ sayesinde okunmus oluyor. 
       * Kodda 93. satira bakarsak FD ACCT-REC'in hemen altinda 
       * tanimladigimiz ACCT-FIELDS isimli grubun icindeki degiskenlere 

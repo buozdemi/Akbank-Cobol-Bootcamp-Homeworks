@@ -5,7 +5,7 @@
         INPUT-OUTPUT SECTION.
         FILE-CONTROL.
       * 16. satirda JCL dosyamizda bagladigimiz ACCTREC'i kodumuzun 
-      * icinde ACCT-REC olarak kullanacagimizi belirtiyoruz. Ayrıca 
+      * icinde ACCT-REC olarak kullanacagimizi belirtiyoruz. Ayrica 
       * ACCTREC dosyasinin acilmamasi veya herhangi bir problem olmasi 
       * durumunda ACCT-ST isminde bir STATUS belirterek bu degiskenin 
       * daha sonrasinda kontrolunu saglayarak dosyamizla ilgili 
@@ -21,7 +21,7 @@
       * kullanacagimizi belirtiyoruz. Cunku ACCT-REC'den okudugumuz
       * record'larin hepsi ayni uzunluga sahip. Okudugumuz degerleri
       * sabit, alani tanimlanmis degiskenlerimizde tutuyoruz.
-      * O yuzden FIXED mod kullandık. Okudugumuz degerlerin uzerinde 
+      * O yuzden FIXED mod kullandik. Okudugumuz degerlerin uzerinde 
       * degisiklik yapabilmek adina PRINC-REC grubu altinda yeni 
       * degiskenlerimizi belirliyoruz. Bu degiskenler simdilik bos.
       * Amacimiz ACCT-REC'ten okudugumuz bilgileri bu degiskenlere
@@ -62,7 +62,7 @@
             05  ACCT-TODAY          PIC 9(08).
       *
       * Bu kisimda STATUS olarak belirledigimiz PRT-ST isimli degiskeni
-      * olusturuyoruz. STATUS hata kodları 0 ile 99 arasinda oldugu 
+      * olusturuyoruz. STATUS hata kodlari 0 ile 99 arasinda oldugu 
       * icin "PIC 9(02)" ile 2 rakamlik boyut belirtiyoruz. 
       * 88 numarali seviye bize soyle bir avantaj sagliyor : 
       * PTR-SUCCESS isimli degisken kendisinin bir ust seviyesinde olan
@@ -71,13 +71,13 @@
       * Eger PRT-ST degeri 00 veya 97 numarali hata kodunu
       * icermiyorsa o zaman PRT-SUCCESS 0(FALSE) olarak kaliyor. Yani
       * 88 seviyeli bu kontol ile dosyamizin acilmasinda bir problem 
-      * olup olmadiğina bakmis oluyoruz. 00 zaten islemin "Basarili" 
+      * olup olmadigina bakmis oluyoruz. 00 zaten islemin "Basarili" 
       * oldugunu soyleyen bir hata kodudur. 97 ise yine islemde bir 
       * problem olmadigini, sadece actigimiz bu dosyanin bir önceki 
-      * islemlerde kapatilmamis yani acık kaldigini soyluyor. Bu durumu 
+      * islemlerde kapatilmamis yani acik kaldigini soyluyor. Bu durumu 
       * kodumuzda bir hata olarak gormuyoruz.
       *
-      * Aynı islemi ACCT-ST icin de belirttik. Fakat ACCT-ST'nin icine
+      * Ayni islemi ACCT-ST icin de belirttik. Fakat ACCT-ST'nin icine
       * bir de ACCT-EOF isimli bir kontrol durumu daha ekledik. 
       * Bu kontrol "0000-MAIN." kisminda UNTIL ile surekli calismasi
       * saglanan "H200-PROCESS"'un dosyamizin son satirini okudugumuzda
@@ -99,7 +99,7 @@
       * Fakat bir de "READ ACCT-REC" komutunu calistiririz. Cunku 
       * eger bu komutu sadece H200-PROCESS'imizin basina ekleseydik, 
       * dosyamiz bos bir dosya oldugunda "READ ACCT-REC" ile hata 
-      * donduremeden H200-PROCESS'imize baslamis olacaktık. Boylelikle
+      * donduremeden H200-PROCESS'imize baslamis olacaktik. Boylelikle
       * H200-PROCESS'indeki islemler calismayacak ve ERROR alacaktik.
       * Bunu engellemek ve dosyanin bos oldugu durumu goz onune alarak 
       * ilk olarak okumamizi burada yapiyoruz. Bir hata soz konusu ise
@@ -129,7 +129,7 @@
       * yapacagiz. COMPUTE diyerek '=' gibi matematiksel bir terim
       * kullanacagimizi belirttik. FUNCTION kullanarak gomulu olan 
       * INTEGER-OF-DAY fonksiyonu ile ACCT-DTAR(Dogum tarihi) 
-      * degiskenindeki gercek tarihin integer olan karsiliğini 
+      * degiskenindeki gercek tarihin integer olan karsiligini 
       * aldik. Aynisini gunumuzun tarihini iceren ACCT-TODAY degiskenine 
       * de uyguladik. Artik elimizde iki integer sayi var. 
       * Bu sayilardan gunumuz tarihi olandan dogum tarihimiz olani 
@@ -161,7 +161,7 @@
             READ ACCT-REC.
         H200-END. EXIT.
       *
-      * Bu adımda daha once acmis oldugumuz iki dosyamizi da 
+      * Bu adimda daha once acmis oldugumuz iki dosyamizi da 
       * islemlerimiz bittigi icin kapatiyoruz.
         H300-CLOSE-FILES.
             CLOSE ACCT-REC
@@ -173,15 +173,15 @@
         H999-END. EXIT.
       *
       * Bu kisimda MAIN fonksiyonumuzu olusturuyoruz. Bu main fonksiyonu
-      * PERFORM ile belirtilen diger fonksiyonları sirasiyla calistirir.
+      * PERFORM ile belirtilen diger fonksiyonlari sirasiyla calistirir.
       * Fakat 2. PERFORM satirinda kullanilan UNTIL'den dolayi 
       * "H200-PROCESS" fonksiyonu ACCT-EOF degiskeni 1(TRUE) olana kadar
-      * calistirilacaktir. ACCT-EOF nasil TRUE olacak diye sorarsanız
+      * calistirilacaktir. ACCT-EOF nasil TRUE olacak diye sorarsaniz
       * soyle aciklamak gerekir. "H200-PROCESS"'un en alt satirindaki
       * "READ ACCT-REC" calistiginda eger son satirdaysak ve artik bir 
       * sonraki satiri okumaya calisiyorsa, boyle bir satir olmadigi 
       * icin ACCT-REC isimli dosyamizin STATUS degiskenine otomatik 
-      * olarak END-OF-FILE(Dosya Sonu) hata kodu olan 10 degeri atanır.
+      * olarak END-OF-FILE(Dosya Sonu) hata kodu olan 10 degeri atanir.
       * 63. satirda bahsettigim olay burada da gerceklesir. 
       * Yani ACCT-ST 10 degerini aldigindan dolayi ACCT-EOF degiskeni
       * kendisinin bir ust seviyesindeki degisken olan ACCT-ST'yi 

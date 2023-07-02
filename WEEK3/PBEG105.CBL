@@ -6,10 +6,10 @@
         FILE-CONTROL.
       * Burada ORG IND. kullanarak bu dosyamizda record'lara nasil 
       * nasil ulasilacagini belirledik. Recordlar'a indexlerle 
-      * ulasacagımizi soyledik. ACCESS kisminda RANDOM kullanarak 
+      * ulasacagimizi soyledik. ACCESS kisminda RANDOM kullanarak 
       * KEY degerlerimizi bizim belirledigimizi, yani record'umuzun 
       * icinde key degerimizin mevcut oldugunu soyledik.
-      * RECORD KEY ise record'larımıza dosya icinde ulasabilmemizi ve 
+      * RECORD KEY ise record'larimiza dosya icinde ulasabilmemizi ve 
       * kayit silme, ekleme, guncelleme gibi olaylari gerceklestirmeyi 
       * saglar. Bu IDX-KEY simdilik bos, onu kullanacagimiz zaman 
       * dolduracagiz. 
@@ -39,7 +39,7 @@
             03  IDX-TUTAR            PIC S9(13)V99 COMP-3.
       *
       * Bu kisimda aralarda kullanilan WS-SPACE degiskenleri verileri 
-      * yazdirdigimizda aralarinda bosluk olmasını istedigim icindir.
+      * yazdirdigimizda aralarinda bosluk olmasini istedigim icindir.
       * VSAM dosyamizdan JULIAN olarak aldigimiz tarihi H200-PROCESS'de
       * GREGORIAN tarihe cevirdigimiz icin 7 karakterlik tarih 8 
       * karaktere donusmustur. Bu sebeple OUT-TARIH'i 8 karakter olarak 
@@ -96,8 +96,8 @@
       * Bu komut LASTREC degiskeninin Y olup olmadigina gore donguyu
       * devam ettirir. Biz burada once 1 kez READ-RECORD ile okuma 
       * yapiyoruz ki okudugumuz ilk satirda bir deger yoksa, yani 
-      * inputtan okudugumuz dosya boş ise READ-RECORD'da LASTREC 
-      * degiskenimizi 'Y' yapıyoruz. Bu sayede maindeki 2. PERFORM 
+      * inputtan okudugumuz dosya bos ise READ-RECORD'da LASTREC 
+      * degiskenimizi 'Y' yapiyoruz. Bu sayede maindeki 2. PERFORM 
       * ifademizi calisamaz duruma getirmis oluyoruz.
         H100-OPEN-FILES.
             OPEN INPUT  IDX-FILE.
@@ -128,9 +128,9 @@
       * türü degiskenlerimize atiyoruz. Cunku IDX-KEY'imiz COMP turunde.
       * Amacimiz IDX-KEY'imize inputtan okudugumuz ID degerlerini 
       * yerlestirmek. Asagidaki 3. MOVE satirinda bu yerlestirmeyi 
-      * yapiyoruz. Artık READ komutu ile IDX-FILE'ın icinde IDX-KEY'deki
+      * yapiyoruz. Artik READ komutu ile IDX-FILE'in icinde IDX-KEY'deki
       * degerin var olup olmadigina bakabiliriz. Eger VSAM dosyamizin
-      * icinde KEY degerimiz varsa o KEY'in verilerini yazdırmak icin
+      * icinde KEY degerimiz varsa o KEY'in verilerini yazdirmak icin
       * H200-PROCESS'ini calistirdik.
         H175-WHILE-PROCESS.
             INITIALIZE INP-KEY-COMP
