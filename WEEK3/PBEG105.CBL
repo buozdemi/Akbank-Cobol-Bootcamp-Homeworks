@@ -48,9 +48,9 @@
         FD  OUT-FILE RECORDING MODE F.
         01  OUT-REC.
             03  OUT-KEY.
-                05  OUT-ID             PIC S9(05).
+                05  OUT-ID             PIC 9(05).
                 05  WS-SPACE-1         PIC X(01) VALUE SPACE.
-                05  OUT-DVZ            PIC S9(03).
+                05  OUT-DVZ            PIC 9(03).
             03  WS-SPACE-2             PIC X(01) VALUE SPACE.
             03  OUT-ADSOYAD            PIC X(30).
             03  WS-SPACE-3             PIC X(01) VALUE SPACE.
@@ -64,8 +64,8 @@
         FD  INP-FILE RECORDING MODE F.
         01  INP-FIELDS.
             03  INP-KEY.
-                05 INP-ID        PIC S9(05).
-                05 INP-DVZ       PIC S9(03).
+                05 INP-ID        PIC 9(05).
+                05 INP-DVZ       PIC 9(03).
       *
         WORKING-STORAGE SECTION.
         01  WS-WORK-AREA.
