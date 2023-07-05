@@ -34,9 +34,9 @@
             03  IDX-KEY.
                 05 IDX-ID            PIC S9(05) COMP-3.
                 05 IDX-DVZ           PIC S9(03) COMP.
-            03  IDX-ADSOYAD          PIC X(30).
-            03  IDX-TARIH            PIC 9(07) COMP-3.
-            03  IDX-TUTAR            PIC S9(13)V99 COMP-3.
+            03  IDX-ALLNAME          PIC X(30).
+            03  IDX-DATE             PIC 9(07) COMP-3.
+            03  IDX-BUDGET           PIC S9(13)V99 COMP-3.
       *
       * Bu kisimda aralarda kullanilan WS-SPACE degiskenleri verileri 
       * yazdirdigimizda aralarinda bosluk olmasini istedigim icindir.
@@ -52,11 +52,11 @@
                 05  WS-SPACE-1         PIC X(01) VALUE SPACE.
                 05  OUT-DVZ            PIC 9(03).
             03  WS-SPACE-2             PIC X(01) VALUE SPACE.
-            03  OUT-ADSOYAD            PIC X(30).
+            03  OUT-ALLNAME            PIC X(30).
             03  WS-SPACE-3             PIC X(01) VALUE SPACE.
-            03  OUT-TARIH              PIC 9(08).
+            03  OUT-DATE               PIC 9(08).
             03  WS-SPACE-4             PIC X(01) VALUE SPACE.
-            03  OUT-TUTAR              PIC $,$$$,$$$,$$$,$$$9.99.
+            03  OUT-BUDGET             PIC $,$$$,$$$,$$$,$$$9.99.
       *
       * Bu kisimda INP dosyamizdan aldigimiz ve VSAM dosyamizda 
       * bulmaya calisacagimiz ID degeri 8 karakterlik bir ZD oldugu 
@@ -153,15 +153,15 @@
       * OUT-REC'i INITIALIZE ile sifirlayip sonrasinda gerekli atamalari
       * yapiyoruz.
         H200-PROCESS.
-            MOVE IDX-TARIH     TO TEMP-DATE
+            MOVE IDX-DATE     TO TEMP-DATE
             COMPUTE WS-INT-JULIAN = FUNCTION INTEGER-OF-DAY(TEMP-DATE)
             COMPUTE WS-GREG = FUNCTION DATE-OF-INTEGER(WS-INT-JULIAN)
             INITIALIZE OUT-REC.
             MOVE IDX-ID        TO OUT-ID
             MOVE IDX-DVZ       TO OUT-DVZ
-            MOVE IDX-ADSOYAD   TO OUT-ADSOYAD
-            MOVE WS-GREG       TO OUT-TARIH
-            MOVE IDX-TUTAR     TO OUT-TUTAR
+            MOVE IDX-ALLNAME   TO OUT-ALLNAME
+            MOVE WS-GREG       TO OUT-DATE
+            MOVE IDX-BUDGET    TO OUT-BUDGET
             MOVE SPACE         TO WS-SPACE-1
             MOVE SPACE         TO WS-SPACE-2
             MOVE SPACE         TO WS-SPACE-3
